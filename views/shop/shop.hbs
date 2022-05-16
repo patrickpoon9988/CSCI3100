@@ -1,0 +1,50 @@
+<div class="row">
+
+  {{#each data}}
+
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="thumbnail">
+      <img src="images/{{this.imagePath}}" alt="..." class="img-responsive">
+      <div class="word">
+        <div class="caption">
+
+          <h5 style="text-align: center ;background-color:rgb(140, 139, 139);margin:0px; padding: top 10px;"> {{this.title}}</h5>
+          <form action="/user/Author" method="POST">
+            <button type="submit" value={{this.Author}} name="name"
+              style="border-style:none ;background-color:transparent">
+              <div class="Author "style="margin:10px">Author: {{this.Author}}</div>
+            </button>
+
+          </form>
+
+          <form action="/user/Owner" method="POST">
+            <button type="submit" value={{this.Owner}} name="name"
+              style="border-style:none ;background-color:transparent">
+              <div class="Owner"style="margin:10px">Owner: {{this.Owner}}</div>
+            </button>
+
+          </form>
+
+          <div class="description">{{this.description}}</div>
+
+
+        </div>
+
+        <div class="clearfix">
+          <div class="price pull-left">${{this.price}}</div>
+          <form action="/shop" method="post">
+            <button class="btn btn-light" style="float:right; background-color:yellow; border-color:yellow" type="submit" value={{this.imagePath}} name="item">Purchase</button>
+          </form>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  {{/each}}
+
+</div>

@@ -1,0 +1,145 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand" href="#">BitWorld</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            
+            <li class="nav-item">
+                <a class="nav-link" action="/on9"  href="/shop"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    Shop</a>
+            </li>
+
+            
+
+
+        </ul>
+    </div>
+
+    <ul class="navbar-nav justify-content-end">
+         <li class="nav-item">
+            <form action="/users/login" method="post">
+                    <button class ="nav-link btn btn-outline-success my-2 my-sm-0" type='submit' id='countButton' disabled="true" onclick="clickfunction()" style="width: 100px;">
+                    <a id="minutes"><i class="fa fa-money" aria-hidden="true"></i></a>
+                    <a id="second"><i class="fa fa-money" aria-hidden="true"></i></a>
+                    </button>
+            </form>
+        <a id="moneypop" hidden="true" style="z-index: 1; position:absolute; top:40px; color: red; font-size:30px;"> +10! </a>
+    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-money" aria-hidden="true"></i> {{money}}</a>
+        </li>
+        <li>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i> User
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/user" method="post">Profile</a>
+                    <a class="dropdown-item" href="/user/setting" aria-labelledby="navbarDropdownMenuLink">Setting
+
+                    </a>
+
+                    <a onclick="clearlocalstorage()" class="dropdown-item" href="/"> Logout</a>
+
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+
+
+
+
+</nav>
+
+<script>
+
+    var starttime = 0
+    var timeNow = 0
+
+    if (localStorage.getItem("countdone") == "true"){
+        document.getElementById('countButton').setAttribute('disabled', "true");
+        document.getElementById('countButton').innerHTML = "Redeemed!";
+
+    }
+    else{
+        var intervalID = setInterval(countdown, 1000)
+    }
+
+    function countdown(){
+
+        if (localStorage.getItem('starttime')){
+            starttime = localStorage.getItem('starttime')
+            timeNow = localStorage.getItem('timeNow') 
+            if (starttime - timeNow > 0){
+                localStorage.setItem('timeNow', new Date().getTime())
+            }
+            else{
+                console.log("enter else")
+                document.getElementById('minutes').innerHTML = '00' + ":";
+                document.getElementById('second').innerHTML = '00';
+            }
+        }
+        else{
+             starttime = new Date().getTime() + 1002 * 20
+             timeNow = new Date().getTime()
+            
+            localStorage.setItem('starttime', starttime) 
+            localStorage.setItem('timeNow', timeNow)
+        }
+
+        timeLeft = starttime -timeNow
+
+        console.log(timeLeft)
+
+        let seconds = Math.floor((timeLeft / 1000) % 60);
+        let minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+        let hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        
+        if (seconds < 10){
+            
+            document.getElementById('second').innerHTML = '0' + seconds;
+        }
+        else 
+            document.getElementById('second').innerHTML = seconds;
+        
+        if (minutes <= 0 && seconds <= 0 || timeLeft < 0){
+            
+            console.log("timeleft" + timeLeft);
+            clearInterval(intervalID);
+            document.getElementById('countButton').removeAttribute('disabled');
+            document.getElementById('countButton').style.backgroundColor = "green";
+            document.getElementById('minutes').innerHTML = "click";
+            document.getElementById('second').innerHTML = "";
+
+        }
+        else document.getElementById('minutes').innerHTML = '0' + minutes + ":";
+        
+    }
+
+    function clickfunction(){
+        document.getElementById('countButton').setAttribute('disabled', "true");
+        document.getElementById('countButton').innerHTML = "Redeemed!"  ;
+        document.getElementById('moneypop').hidden = false
+        localStorage.setItem("countdone", true)
+
+        const timeoutID = setTimeout(removepop, 1500)
+        function removepop(){document.getElementById('moneypop').hidden = true; clearTimeout(timeoutID)}
+
+        fetch('/postmission/' + ({{money}} + 10).toString(), {method:'post'});
+        localStorage.reload();
+         localStorage.setItem('starttime', new Date().getTime() + 1002 * 20) ;
+            localStorage.setItem('timeNow', new Date().getTime());
+            localStorage.setItem('countdone',false);
+    }
+    
+    function clearlocalstorage(){
+        localStorage.clear()
+    }
+</script>

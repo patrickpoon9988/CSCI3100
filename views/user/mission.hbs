@@ -1,0 +1,55 @@
+<div>
+    <h1>Mission Page</h1>
+    <br>
+    <br>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mission</th>
+                <th scope="col">Rewards</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"><h4>1</h4></th>
+                <td><h4>First Register!</h4></td>
+                <td>
+                    <button id = "firstregister" class="btn btn-outline-dark" onclick="claimfirst()" data-first = {{result.uploaded_product}} > Claim</button>
+                    <i id="moneymissionpop1" style="color: red; position:absolute; font-size:x-large"  hidden="true" >+10!</i>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><h4>2</h4></th>
+                <td><h4>Post Your first comment!</h4></td>
+                <td>
+                    <button id = "firstcomment" class="btn btn-outline-dark" onclick="firstcomment()" data-first = {{result.uploaded_product}} > Claim</button>
+                    <i id="moneymissionpop2" style="color: red; position:absolute; font-size:x-large"  hidden="true" >+10!</i>
+                </td>
+            </tr>
+</div>
+
+<script>
+
+
+    if (document.getElementById('firstregister').getAttribute('data-first') != 0){
+        document.getElementById('firstregister').setAttribute('disabled', 'true')
+    }
+
+    async function claimfirst(){
+        console.log("enter")
+        let redeem = await fetch("/dailymission" + "/" + ({{result.Money}} + 10) + "/" + ({{result.uploaded_product}} + 1), {method: "post"}) //index.js post
+
+        document.getElementById('moneymissionpop1').hidden = false
+
+        const timeoutID = setTimeout(removepop, 1500)
+        function removepop(){document.getElementById('moneymissionpop').hidden = true; clearTimeout(timeoutID)}
+
+    }
+
+    /*aysnc function firstcomment(){
+        console.log("enter")
+    }*/
+
+</script>

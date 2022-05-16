@@ -1,0 +1,122 @@
+           <div style="color:red"> {{{error}}}</div>
+<div class="container">
+    <br>
+    <h1 class="text-center">
+        Upload your Product 
+    </h1>
+    <br>
+    <form action="/uploadItem" method="POST" enctype="multipart/form-data">
+
+        {{#if success}}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Your Image File is Uploaded.
+        </div>
+        {{/if}}
+
+        {{#if result}}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failed!</strong> Your Image File is Uploaded failed.
+        </div>
+        {{/if}}
+<div class="split left">
+  <div class="centered">
+              <div class="form-group">
+            <label for="Select Image:">Select Image:</label>
+            {{#if img}}
+            <img   src="images/{{img}}">
+            {{/if}}
+            <input type="file" name="image" class="form-control" id="">
+        </div>
+        <br>
+        <div class="form-group">
+            <button class="btn btn-block btn-danger" type="submit" value="upload" name="uploaded">
+                Upload Image
+            </button>
+  </div>
+</div>
+
+
+            </a>
+        </div>
+        </form>
+
+
+<form action="/confirmed" method="POST" >
+<div class="split right">
+  <div class="centered">
+    <div class ="form-group">
+
+               <label for = "title"> Title : </label>
+               <input type="text" id="title" name="title" class="form-control">
+            </div>
+            <div class ="form-group">
+               <label for = "description">description</label>
+               <input type="text" id="description" name="description" class="form-control">
+            </div>
+            <div class ="form-group">
+               <label for = "price">price</label>
+               <input type="number" id="price" name="price" class="form-control">
+            </div>
+  
+            <button type="submit" value ={{img}} name="item" class="btn btn-primary">Upload</button>
+
+
+  </div>
+</div>
+        
+</form>
+
+
+
+
+
+   
+
+
+<style>
+    .split {
+        
+margin: 20px;
+   height: 50%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #376090;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: rgb(50, 179, 149);
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 95%;
+}
+    
+</style>
+
+
+
+
+<br>
+<br>

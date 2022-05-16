@@ -1,0 +1,36 @@
+<body background="/images/background.jpg"
+   style="background-repeat:no-repeat;background-attachment:fixed;background-size:cover;color:#fff;background-position:center">
+
+   <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+         <h1>Sign Up</h1>
+         <b><div style="color:red"> {{{error}}}</div></b>
+         <form action="/users/signup" method="post">
+            <div class="form-group">
+
+               <label for="email" style=" font-size:1.5em"> E-mail</label>
+               <input type="text" id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+
+               <label for="userName" style="font-size:1.5em">userName</label>
+               <input type="text" id="userName" name="userName" class="form-control">
+            </div>
+            <div class="form-group">
+
+               <label for="password" style="font-size:1.5em">Password</label>
+               <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <div class="form-group">
+
+               <label for="Conpassword" style="font-size:1.5em">Comfirmed Password</label>
+               <input type="password" id="Conpassword" name="Conpassword" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign up</button>
+
+
+
+         </form>
+
+      </div>
+</body>

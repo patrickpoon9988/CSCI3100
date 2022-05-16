@@ -1,0 +1,44 @@
+<div class="container">
+    <br>
+    <h1 class="text-center">
+        Upload your profile image
+    </h1>
+    <br>
+    <form action="/user/setting" method="POST" enctype="multipart/form-data">
+
+        {{#if success}}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Your Image File is Uploaded.
+        </div>
+        {{/if}}
+
+        {{#if result}}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failed!</strong> Your Image File is Uploaded failed.
+        </div>
+        {{/if}}
+
+        <div class="form-group">
+            <label for="Select Image:">Select Image:</label>
+            <input type="file" name="image" class="form-control" id="">
+        </div>
+        <br>
+        <div class="form-group">
+            <button class="btn btn-block btn-danger" type="submit">
+                Upload Image
+            </button>
+
+            </a>
+        </div>
+    </form>
+                <a href="/user/changePW" action="/user/setting"> 
+               change Password
+                </a>
+   
+
+  
+
+
+</div>

@@ -1,0 +1,69 @@
+.thumbnail>img {
+    height: 200px;
+    max-height: 300px;
+    max-width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: black;
+    border-style: solid; 
+    
+}
+
+h5{
+text-decoration: underline;
+}
+
+.col-sm-4 {
+    width: 33%;
+    margin-top: 30px;
+    flex-wrap: nowrap;
+}
+
+.thumbnail .description {
+    color: #7f7f7f;
+    font-size: small;
+}
+
+.thumbnail{    
+    background-color: #363434;
+    height:100%;
+    margin: 10px;
+    padding: 10px;  
+    padding-left: 30px;
+    padding-right: 30px;
+    border: black;
+    border-style: solid; 
+}
+
+
+.price {
+    font-weight: bold;
+    font-size: 16px;
+    
+}
+
+.container{
+    margin-top: 30px;
+    
+
+}
+
+.row{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.word{
+    background-color: #d0cbcb;
+    padding: 5px;   
+
+}
+
+
+body{
+    background-color: #d0cbcb;
+}
+
